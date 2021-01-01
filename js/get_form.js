@@ -24,9 +24,9 @@ class ContactList{
             row.childNodes[i].textContent = newData[i+1];
         }
 
+
         for(var i = 0; i<this.contacts.length;i++){
-            if(this.contacts[i].id == id){
-                console.log(this.contacts[i].id)
+            if(this.contacts[i].id == id){            
                 this.contacts[this.contacts.indexOf(this.contacts[i])].id =parseInt(newData[0])
                 this.contacts[this.contacts.indexOf(this.contacts[i])].fname = newData[1]
                 this.contacts[this.contacts.indexOf(this.contacts[i])].email = newData[2]
@@ -34,6 +34,7 @@ class ContactList{
                 break;
             }
         }
+
         submit.value = "Submit"
     }
 }
@@ -71,9 +72,11 @@ function submit_(my_event){
         let contact = new Contact(global_id++, fnameArr, email, phone);
         if(submit.value === "Submit"){
             contactListObj.addContact(contact)
-            console.log("Submitting")
             create_row(contact.id, [contact.fname, contact.email, contact.phone])
-        }
+            document.getElementById("fname").value=""
+            document.getElementById("email").value=""
+            document.getElementById("phone").value=""
+                }
         else {
             contactListObj.editContact(edit_id,  [edit_id, contact.fname, contact.email, contact.phone])
         }
@@ -95,13 +98,13 @@ function create_row(contactId, contactArr){
     edit_btn = document.createElement('button');
     edit_btn.id = contactId;
     edit_btn.name = "edit"
-    edit_btn.style = "height:25px;width:25px; background-image: url(/icons/edit-icon.jpg);background-size: 100%"
+    edit_btn.style = "height:25px;width:25px; background-image: url(icons/edit-icon.jpg);background-size: 100%"
     edit_btn.addEventListener("click", edit_);
 
     remove_btn = document.createElement('button');
     remove_btn.id = contactId;
     remove_btn.name = "remove"
-    remove_btn.style = "height:25px;width:25px; background-image: url(/icons/red-x.png);background-size: 100%"
+    remove_btn.style = "height:25px;width:25px; background-image: url(icons/red-x.png);background-size: 100%"
     remove_btn.addEventListener("click", remove_);
 
     btn_cell.appendChild(edit_btn);
@@ -112,22 +115,28 @@ function create_row(contactId, contactArr){
 }
 
 function remove_(){
-    console.log("remove:"+this.id)
-    console.log(contactListObj.contacts[this.id]);
     contactListObj.removeContact(this.id)
 }
 
 function edit_(){
     submit.value = "Edit"
+
     edit_id  =this.id
-    console.log("EDIT:"+edit_id)
-    // contactListObj.editContact(this.id)
+    for(var i = 0; i<contactListObj.contacts.length;i++){
+        if(contactListObj.contacts[i].id == edit_id){
+            document.getElementById("fname").value = contactListObj.contacts[contactListObj.contacts.indexOf(contactListObj.contacts[i])].fname
+            document.getElementById("email").value = contactListObj.contacts[contactListObj.contacts.indexOf(contactListObj.contacts[i])].email
+            document.getElementById("phone").value = contactListObj.contacts[contactListObj.contacts.indexOf(contactListObj.contacts[i])].phone
+
+            break;
+        }
+    }
 }
 
 function update_html(all_contact){
     htmlRow="", row;
     for(row of all_contact){
-        htmlRow=`<tr id="${row.id}"> <td>${row.name}</td><td>${row.email}</td><td>${row.phone}</td> <td><input type="image" id="${row.id}" name="remove" width="30px" src="/icons/red-x.png"/><input type="image" id="${row.id}" name="edit" width="30px" src="/icons/edit-icon.jpg"/></td> </tr>`;
+        htmlRow=`<tr id="${row.id}"> <td>${row.name}</td><td>${row.email}</td><td>${row.phone}</td> <td><input type="image" id="${row.id}" name="remove" width="30px" src="icons/red-x.png"/><input type="image" id="${row.id}" name="edit" width="30px" src="icons/edit-icon.jpg"/></td> </tr>`;
     }
     document.getElementById("contact_table").getElementsByTagName('tbody')[0].innerHTML = htmlRow;
 }
