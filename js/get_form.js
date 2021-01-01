@@ -73,13 +73,13 @@ function submit_(my_event){
         if(submit.value === "Submit"){
             contactListObj.addContact(contact)
             create_row(contact.id, [contact.fname, contact.email, contact.phone])
-            document.getElementById("fname").value=""
-            document.getElementById("email").value=""
-            document.getElementById("phone").value=""
                 }
         else {
             contactListObj.editContact(edit_id,  [edit_id, contact.fname, contact.email, contact.phone])
         }
+        document.getElementById("fname").value=""
+        document.getElementById("email").value=""
+        document.getElementById("phone").value=""
     }
 }
 
