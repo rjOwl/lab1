@@ -8,15 +8,13 @@
 </head>
 
 <body>
-    <form>
+    <div style="display: block;">
+        <form >
         <div class="wrapper">
             <div id="left">
                 <ul>
-                    <li>
-                        <label for="fname">Name</label>
-                    </li>
-                    <li id="error_name">
-                    </li>
+                    <li> <label for="fname">Name</label> </li>
+                    <li id="error_name"></li>
                 </ul>
                 <input type="text" id="fname" name="fname" />
             </div>
@@ -24,23 +22,23 @@
             <div id="right">
                 <ul>
                     <li ><label for="email">Email</label></li>
-                    <li id="error_email">
-                    </li>
+                    <li id="error_email"></li>
                 </ul>
                 <input type="text" id="email" name="email" />
             </div>
             <div id="right">
                 <ul>
                     <li ><label for="phone">Phone</label></li>
-                    <li id="error_phone">
-                    </li>
+                    <li id="error_phone"></li>
                 </ul>
                 <input type="text" id="phone" name="phone" /><br /><br />
                 <input type="submit" value="Submit" id="submit" class="buttonClass"/>
             </div>
         </div>
+    </form>    
+</div>    
 
-    </form>
+<div>
     <table id="contact_table">
         <thead>
             <tr>
@@ -53,6 +51,8 @@
         <tbody>
         </tbody>
         </table>
+
+</div>
       <script src="/js/get_form.js"></script>
     </body>
 </html>

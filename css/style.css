@@ -2,6 +2,7 @@ label {
   display: block;
 }
 
+
 ul {
   display: flex;
   overflow: hidden inline;
@@ -26,6 +27,7 @@ div {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  margin-bottom: 20px;
 }
 
 table {
