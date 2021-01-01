@@ -7,12 +7,12 @@ class ContactList{
         this.contacts.push(contact)
     }
     removeContact(id){
-        var row = document.getElementById(id);
-        row.parentNode.removeChild(row);
         // var contact;
-        for(var contact of this.contacts){
-            if(contact.id == id){
-                this.contacts.splice(contact, 1)
+        for(var i = 0; i<this.contacts.length;i++){
+            if(this.contacts[i].id == id){
+                this.contacts.splice(this.contacts.indexOf(this.contacts[i]), 1)
+                var row = document.getElementById(id);
+                row.parentNode.removeChild(row);
                 break;
             }
         }
