@@ -1,0 +1,60 @@
+label{
+    display: block;
+}
+
+input{
+    border-radius: 4px;
+}
+
+div{
+    display: inline;
+}
+
+.buttonClass {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+    margin-top: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+  
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+  
+tr:nth-child(even) {
+background-color: #eaebf1;
+}
+
+  
+#wrapper{
+    margin:0;
+}
+#left{
+    float:left;
+    width:20%;
+    /* overflow:hidden; */
+}
+#right{
+    float:left;
+    width:20%;
+    /* overflow:hidden; */
+} 
+
+/* References */
+/* https://stackoverflow.com/questions/17217766/two-divs-side-by-side-fluid-display */
+
