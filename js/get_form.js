@@ -7,8 +7,7 @@ class ContactList{
         this.contacts.push(contact)
     }
     removeContact(id){
-        // var contact;
-        for(var i = 0; i<this.contacts.length;i++){
+        for(var i in this.contacts){
             if(this.contacts[i].id == id){
                 this.contacts.splice(this.contacts.indexOf(this.contacts[i]), 1)
                 var row = document.getElementById(id);
@@ -17,20 +16,25 @@ class ContactList{
             }
         }
     }
+
     editContact(id, newData){
-        row = document.getElementsByTagName("tr"), i = 0;
-        var cell;
-        for(cell of newData){
-            row[id-1].getElementsByTagName("td")[i] = cell
-            i++;
+        row = document.getElementById(id), i = 0;
+ 
+        for(var i=0; i<row.childNodes.length-2;i++){
+            row.childNodes[i].textContent = newData[i+1];
         }
-        var counter = 0;
-        for(contact of this.contacts ){
-            if(contact.id == id){
-                this.contacts[counter] =newData;
+
+        for(var i = 0; i<this.contacts.length;i++){
+            if(this.contacts[i].id == id){
+                console.log(this.contacts[i].id)
+                this.contacts[this.contacts.indexOf(this.contacts[i])].id =parseInt(newData[0])
+                this.contacts[this.contacts.indexOf(this.contacts[i])].fname = newData[1]
+                this.contacts[this.contacts.indexOf(this.contacts[i])].email = newData[2]
+                this.contacts[this.contacts.indexOf(this.contacts[i])].phone = newData[3]
+                break;
             }
-            counter++;
         }
+        submit.value = "Submit"
     }
 }
 
@@ -44,7 +48,7 @@ class Contact {
 }
 
 let contactListObj = new ContactList();
-var global_id = 0;
+var global_id = 0, edit_id;
 var table_rows = 0;
 
 var submit = document.getElementById("submit");
@@ -52,12 +56,9 @@ submit.addEventListener("click", submit_);
 
 function submit_(my_event){
     my_event.preventDefault()
-   
-    // <input type="image" id="" name="edit" width="50px" src="/icons/edit-icon.png" />
     var fname = document.getElementById("fname").value,
     email = document.getElementById("email").value,
     phone = document.getElementById("phone").value;
-    htmlRow = ""
 
     if(validate(fname, email, phone)){
         let fnameArr = fname.split(" ")
@@ -68,53 +69,17 @@ function submit_(my_event){
             fnameArr=fname;
         }
         let contact = new Contact(global_id++, fnameArr, email, phone);
-        contactListObj.addContact(contact)
-        create_row(contact.id, [contact.fname, contact.email, contact.phone])
-        htmlRow=`
-        <tr id="${contact.id}"> 
-        <td>${contact.fname}</td>
-        <td>${contact.email}</td>
-        <td>${contact.phone}</td> 
-        `;
-        // <td>
-        // <button id="${contact.id}" name="remove" style="height:25px;width:25px; background-image: url(/icons/red-x.png);background-size: 100%">
-        // <button id="${contact.id}" name="remove" style="height:25px;width:25px; background-image: url(/icons/edit-icon.jpg);background-size: 100%">
-        // </td>
-        // document.getElementById("contact_table").getElementsByTagName('tbody')[0].innerHTML += htmlRow;
-
-        // btn_cell = document.createElement('td');
-        // edit_btn = document.createElement('button');
-        // edit_btn.id = contact.id;
-        // edit_btn.name = "edit"
-        // edit_btn.style = "height:25px;width:25px; background-image: url(/icons/edit-icon.jpg);background-size: 100%"
-        // edit_btn.addEventListener("click", edit_);
-
-        // remove_btn = document.createElement('button');
-        // remove_btn.id = contact.id;
-        // remove_btn.name = "edit"
-        // remove_btn.style = "height:25px;width:25px; background-image: url(/icons/red-x.png);background-size: 100%"
-        // remove_btn.addEventListener("click", edit_);
-
-        // btn_cell.appendChild(edit_btn);
-        // btn_cell.appendChild(remove_btn);
-
-        // document.getElementById("contact_table").appendChild(btn_cell)
-        // document.getElementById("contact_table").getElementsByTagName('tbody')[0].innerHTML += "</tr>";
-
-        // buttons =  document.getElementsByTagName('button')
-        // inputs = buttons.querySelectorAll('edit');
-        // for (var i = 0; i < buttons.length; i++) {
-        //     buttons[i].addEventListener("click", edit_);
-        // }
-
-        // var remButtons = div.querySelectorAll('remove');
-        // for (var i = 0; i < remButtons.length; i++) {
-        //     remButtons[i].addEventListener("click", remove_);
-        // }
-
-        // remove.addEventListener("click", remove_);
+        if(submit.value === "Submit"){
+            contactListObj.addContact(contact)
+            console.log("Submitting")
+            create_row(contact.id, [contact.fname, contact.email, contact.phone])
+        }
+        else {
+            contactListObj.editContact(edit_id,  [edit_id, contact.fname, contact.email, contact.phone])
+        }
     }
 }
+
 
 function create_row(contactId, contactArr){
     row = document.createElement('tr');
@@ -153,9 +118,10 @@ function remove_(){
 }
 
 function edit_(){
-    console.log("EDIT:"+this.id)
-    console.log(contactListObj.contacts[this.id]);
-    contactListObj.editContact(this.id)
+    submit.value = "Edit"
+    edit_id  =this.id
+    console.log("EDIT:"+edit_id)
+    // contactListObj.editContact(this.id)
 }
 
 function update_html(all_contact){
