@@ -1,17 +1,24 @@
-label{
-    display: block;
+label {
+  display: block;
 }
 
-input{
-    border-radius: 4px;
+ul {
+  display: flex;
+  overflow: hidden inline;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+input {
+  border-radius: 4px;
 }
 
-div{
-    display: inline;
+div {
+  display: inline;
 }
 
 .buttonClass {
-  background-color: #4CAF50; /* Green */
+  background-color: #4caf50; /* Green */
   border: none;
   color: white;
   padding: 15px 20px;
@@ -22,39 +29,38 @@ div{
 }
 
 table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 50%;
-    margin-top: 0;
-    margin-right: auto;
-    margin-left: auto;
-}
-  
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-  
-tr:nth-child(even) {
-background-color: #eaebf1;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+  margin-top: 0;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-  
-#wrapper{
-    margin:0;
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
 }
-#left{
-    float:left;
-    width:20%;
-    /* overflow:hidden; */
+
+tr:nth-child(even) {
+  background-color: #eaebf1;
 }
-#right{
-    float:left;
-    width:20%;
-    /* overflow:hidden; */
-} 
+
+#wrapper {
+  margin: 0;
+}
+#left {
+  float: left;
+  width: 20%;
+  /* overflow:hidden; */
+}
+#right {
+  float: left;
+  width: 20%;
+  /* overflow:hidden; */
+}
 
 /* References */
 /* https://stackoverflow.com/questions/17217766/two-divs-side-by-side-fluid-display */
-

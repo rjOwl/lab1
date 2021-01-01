@@ -11,24 +11,35 @@
     <form>
         <div class="wrapper">
             <div id="left">
-                <label for="fname">Name</label>
+                <ul>
+                    <li>
+                        <label for="fname">Name</label>
+                    </li>
+                    <li id="error_name">
+                    </li>
+                </ul>
                 <input type="text" id="fname" name="fname" />
             </div>
 
             <div id="right">
-                <label for="email">Email</label>
+                <ul>
+                    <li ><label for="email">Email</label></li>
+                    <li id="error_email">
+                    </li>
+                </ul>
                 <input type="text" id="email" name="email" />
             </div>
             <div id="right">
-                <label for="phone">Phone</label>
+                <ul>
+                    <li ><label for="phone">Phone</label></li>
+                    <li id="error_phone">
+                    </li>
+                </ul>
                 <input type="text" id="phone" name="phone" /><br /><br />
                 <input type="submit" value="Submit" id="submit" class="buttonClass"/>
             </div>
         </div>
-        <li class="errors" style='display:none'>
-            <ul id='error-messages'>
-            </ul>
-        </li>
+
     </form>
     <table id="contact_table">
         <thead>
@@ -38,21 +49,9 @@
                 <th>Phone</th>
                 <th>Action</th>
               </tr>
-      
         </thead>
         <tbody>
-
         </tbody>
-        <!-- <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-            <td>
-                <!-- <button style="height:25px;width:25px; background-image: url(/icons/red-x.png);background-size: 100%"> -->
-                    <!-- <button style="height:25px;width:25px; background-image: url('/icons/edit-icon.jpg');"> -->
-                        <!-- <input type="button" id="" name="edit" width="30px" src="/icons/edit-icon.jpg"/> -->
-            <!-- </td> -->
-            <!-- </tr>  -->
         </table>
       <script src="/js/get_form.js"></script>
     </body>

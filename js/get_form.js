@@ -127,7 +127,6 @@ function edit_(){
             document.getElementById("fname").value = contactListObj.contacts[contactListObj.contacts.indexOf(contactListObj.contacts[i])].fname
             document.getElementById("email").value = contactListObj.contacts[contactListObj.contacts.indexOf(contactListObj.contacts[i])].email
             document.getElementById("phone").value = contactListObj.contacts[contactListObj.contacts.indexOf(contactListObj.contacts[i])].phone
-
             break;
         }
     }
@@ -143,23 +142,26 @@ function update_html(all_contact){
 
 function validate(name,  email, phone){
     var allGood = true;
-    document.getElementsByClassName("errors")[0].style.display="none";
-    document.getElementById("error-messages").innerHTML = "";
-    var errorString ="";
     if(!name){
-        errorString+="<li>Name shouldn't be empty</li>"
+        document.getElementById("error_name").innerHTML="<label style='color: red;'>  * Name empty";
+        allGood=false;
+    }
+    else{
+        document.getElementById("error_name").innerHTML="";
     }
     if(phone.length != 11){
-        errorString+="<li>Enter a valid phone.</li>"
+        document.getElementById("error_phone").innerHTML="<label style='color: red;'>  * Enter a valid phone";
+        allGood=false;
+    }
+    else{
+        document.getElementById("error_phone").innerHTML="";
     }
     if(!email.includes("@")){
-        errorString+="<li>Enter a valid email.</li>"
-    }
-    if(errorString){
-        document.getElementsByClassName("errors")[0].style.display="block";
-        document.getElementById("error-messages").innerHTML=errorString
-        console.log(errorString);
+        document.getElementById("error_email").innerHTML="<label style='color: red;'>  * Enter a valid email";
         allGood=false;
+    }
+    else{
+        document.getElementById("error_email").innerHTML="";
     }
     return allGood;
 }
@@ -176,4 +178,13 @@ function delete_row(){
 // will remove the 
 }
 
-
+/**
+ *  reference:
+ * Lab notes
+ * https://stackoverflow.com/questions/9507774/how-to-make-background-image-shrink-proportionally-to-fit-button-size-in-javascr/9507844
+ * https://stackoverflow.com/questions/8683528/embed-image-in-a-button-element
+ * https://stackoverflow.com/questions/9329446/for-each-over-an-array-in-javascript
+ * https://www.w3schools.com/jsref/jsref_forof.asp
+ * adding buttons automatically without query selector:
+ *  https://stackoverflow.com/questions/30025645/addeventlistener-does-not-work-on-dynamically-created-button
+*/
